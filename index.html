@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방학 과제 관리 시스템</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1>📚 방학 과제 관리 시스템</h1>
+            <p class="subtitle">총 21명 (1-13번, 51-58번)</p>
+        </header>
+
+        <!-- 탭 메뉴 -->
+        <nav class="tabs">
+            <button class="tab active" onclick="switchTab('input')">📝 과제 입력</button>
+            <button class="tab" onclick="switchTab('status')">📊 전체 현황</button>
+            <button class="tab" onclick="switchTab('stats')">📈 통계</button>
+            <button class="tab" onclick="switchTab('portfolio')">⭐ 포트폴리오</button>
+        </nav>
+
+        <!-- 메시지 표시 영역 -->
+        <div id="message" class="message"></div>
+
+        <!-- 1. 과제 입력 탭 -->
+        <div id="input-tab" class="tab-content active">
+            <div class="input-section">
+                <div class="student-select">
+                    <label for="studentNumber">학생 번호:</label>
+                    <select id="studentNumber">
+                        <option value="">선택하세요</option>
+                        <option value="1">1번</option>
+                        <option value="2">2번</option>
+                        <option value="3">3번</option>
+                        <option value="4">4번</option>
+                        <option value="5">5번</option>
+                        <option value="6">6번</option>
+                        <option value="7">7번</option>
+                        <option value="8">8번</option>
+                        <option value="9">9번</option>
+                        <option value="10">10번</option>
+                        <option value="11">11번</option>
+                        <option value="12">12번</option>
+                        <option value="13">13번</option>
+                        <option value="51">51번</option>
+                        <option value="52">52번</option>
+                        <option value="53">53번</option>
+                        <option value="54">54번</option>
+                        <option value="55">55번</option>
+                        <option value="56">56번</option>
+                        <option value="57">57번</option>
+                        <option value="58">58번</option>
+                    </select>
+                    <span class="hint">* 기존 데이터가 있으면 자동으로 불러옵니다</span>
+                </div>
+
+                <h3>📌 필수 과제</h3>
+                <div class="task-group">
+                    <div class="task-item">
+                        <input type="checkbox" id="plan1">
+                        <label for="plan1">방학 계획표 1차 (8/9)</label>
+                        <input type="date" id="plan1Date" class="date-input">
+                        <div class="rating" data-task="plan1">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <input type="checkbox" id="plan2">
+                        <label for="plan2">방학 계획표 2차 (8/20)</label>
+                        <input type="date" id="plan2Date" class="date-input">
+                        <div class="rating" data-task="plan2">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <input type="checkbox" id="writing">
+                        <label for="writing">주제 글쓰기</label>
+                        <select id="writingTopic" class="topic-select">
+                            <option value="">주제 선택</option>
+                            <option value="꿈에서 깼는데 내가 선생님이었다!">꿈에서 깼는데 내가 선생님이었다!</option>
+                            <option value="시간을 멈추는 리모컨">시간을 멈추는 리모컨이 생긴다면</option>
+                            <option value="물건이 말을 걸어왔다">물건이 나에게 말을 걸어왔다</option>
+                            <option value="미래의 나에게서 편지">미래의 나에게서 편지가 도착했다</option>
+                            <option value="반려동물과 몸이 바뀌었다">반려동물과 몸이 바뀌었다면</option>
+                            <option value="감정 주스">감정 주스를 마시면</option>
+                            <option value="하늘을 나는 책가방">하늘을 나는 책가방</option>
+                            <option value="내 그림자가 살아간다면">내 그림자가 나 없이 살아간다면</option>
+                            <option value="책 속에 들어가">책 속에 들어가 하루를 살아본다면</option>
+                        </select>
+                        <input type="date" id="writingDate" class="date-input">
+                        <div class="rating" data-task="writing">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <input type="checkbox" id="reading">
+                        <label for="reading">한국사 관련 도서 읽기</label>
+                        <input type="date" id="readingDate" class="date-input">
+                        <div class="rating" data-task="reading">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>🌟 선택 과제</h3>
+                <div class="task-group">
+                    <div class="task-item">
+                        <label>선택과제 1:</label>
+                        <select id="optional1" class="topic-select">
+                            <option value="">미선택</option>
+                            <option value="맛있게 먹은 음식들 사진">맛있게 먹은 음식들 사진</option>
+                            <option value="내가 만든 요리">내가 만든 요리</option>
+                            <option value="길고양이 관찰 일기">길고양이 관찰 일기</option>
+                            <option value="우리 동네 예쁜 곳">우리 동네 예쁜 곳</option>
+                            <option value="하늘 사진 3장">하늘 사진 3장</option>
+                            <option value="창밖 풍경 변화">창밖 풍경 변화</option>
+                            <option value="좋아하는 공간">좋아하는 공간</option>
+                            <option value="집안일 인증">집안일 인증</option>
+                        </select>
+                        <input type="date" id="optional1Date" class="date-input">
+                        <div class="rating" data-task="optional1">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <label>선택과제 2:</label>
+                        <select id="optional2" class="topic-select">
+                            <option value="">미선택</option>
+                            <option value="학습 - 복습 문제집">학습 - 복습 문제집</option>
+                            <option value="운동 - 운동 일지">운동 - 운동 일지</option>
+                            <option value="진로 - 꿈품">진로 - 꿈품</option>
+                            <option value="독서 - 독서기록">독서 - 독서기록</option>
+                            <option value="예술 - 감상문">예술 - 감상문</option>
+                            <option value="견문 - 견학 소감문">견문 - 견학 소감문</option>
+                            <option value="창작 - 이야기 쓰기">창작 - 이야기 쓰기</option>
+                            <option value="기타 - 자유 활동">기타 - 자유 활동</option>
+                        </select>
+                        <input type="date" id="optional2Date" class="date-input">
+                        <div class="rating" data-task="optional2">
+                            <span>평가:</span>
+                            <span class="star" data-value="1">☆</span>
+                            <span class="star" data-value="2">☆</span>
+                            <span class="star" data-value="3">☆</span>
+                            <span class="star" data-value="4">☆</span>
+                            <span class="star" data-value="5">☆</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notes-section">
+                    <label for="notes">💬 비고사항:</label>
+                    <textarea id="notes" rows="3" placeholder="특이사항이나 메모를 입력하세요..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="resetForm()">초기화</button>
+                    <button class="btn-primary" onclick="saveStudent()">저장</button>
+                </div>
+
+                <div class="tips">
+                    💡 Tip: Tab키로 이동, 같은 번호 재입력시 수정
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 전체 현황 탭 -->
+        <div id="status-tab" class="tab-content">
+            <div class="toolbar">
+                <button class="btn-export" onclick="exportToSheets()">📊 구글 시트 내보내기</button>
+                <button class="btn-refresh" onclick="loadAllStudents()">🔄 새로고침</button>
+            </div>
+            <div class="table-container">
+                <table id="statusTable">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>계획표</th>
+                            <th>글쓰기</th>
+                            <th>독서</th>
+                            <th>선택1</th>
+                            <th>선택2</th>
+                            <th>완료율</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statusTableBody">
+                        <!-- 데이터가 여기 들어갑니다 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. 통계 탭 -->
+        <div id="stats-tab" class="tab-content">
+            <div class="stats-container">
+                <!-- 통계 내용이 여기 들어갑니다 -->
+            </div>
+        </div>
+
+        <!-- 4. 포트폴리오 탭 -->
+        <div id="portfolio-tab" class="tab-content">
+            <div class="portfolio-container">
+                <!-- 포트폴리오 내용이 여기 들어갑니다 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
